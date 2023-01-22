@@ -1,21 +1,30 @@
 // Display/UI
 
-import { createBoard } from './modules/minesweeper.js';
+import { createBoard, markTile } from './minesweeper.js';
 
 const BOARD_SIZE = 5
 const NUMBER_OF_MINES = 2
 
 const board = createBoard(BOARD_SIZE, NUMBER_OF_MINES)
 const boardElement = document.querySelector('.board')
-boardElement.style.setProperty("--size", BOARD_SIZE)
+const minesLeftText = document.querySelector('[data-mine-count]')
+
 console.log(board)
+
 board.forEach(row => {
     row.forEach(tile => {
         boardElement.append(tile.element)
+        tile.element.addEventListener('click', () => {})
+        tile.element.addEventListener('contextmenu', e => {
+            e.preventDefault()
+            markTile(tile)
+        })
     })
 })
 
-// 1. Populate a board with tiles/mines
+boardElement.getElementsByClassName.setProperty("--size", BOARD_SIZE)
+minesLeftText = NUMBER_OF_MINES
+
 // 2. Left click on tiles
     // a. Reveal tiles
 // 3. Right click on tiles
